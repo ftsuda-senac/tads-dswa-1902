@@ -14,7 +14,7 @@
             <div class="row">
                 <section class="col-md-12">
                     <h1>Formulário</h1>
-                    <form method="post" th:action="@{/formulario/salvar}" th:object="${dadosPessoais}" novalidate>
+                    <form method="post" th:action="@{/formulario/salvar-prg}" th:object="${dadosPessoais}" novalidate>
 
                         <input type="hidden" name="id" value="123" th:field="*{id}">
 

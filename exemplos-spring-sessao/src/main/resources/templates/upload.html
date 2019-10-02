@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exemplo upload</title>
+</head>
+<body>
+	<h1>Exemplo upload</h1>
+	<div th:if="${msg != null}">
+		<p style="color: yellow; background-color: blue" th:text="${msg}"></p>
+		<p th:if="${urlAcessoUpload != null}">
+			Acessar o arquivo através do link <a
+				th:href="@{~__${urlAcessoUpload}__}" th:text="${urlAcessoUpload}"
+				target="_blank">URL</a>
+		</p>
+	</div>
+	<div>
+		<form method="post" th:action="@{/upload/salvar}"
+			enctype="multipart/form-data">
+			<div>
+				<label>Selecione o arquivo</label>
+			</div>
+			<input type="file" name="arquivo" />
+			<button type="submit">Enviar</button>
+		</form>
+	</div>
+
+</body>
+</html>

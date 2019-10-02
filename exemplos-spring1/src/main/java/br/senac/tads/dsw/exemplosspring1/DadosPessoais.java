@@ -4,6 +4,14 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class DadosPessoais implements Serializable {
@@ -12,26 +20,37 @@ public class DadosPessoais implements Serializable {
 
 	private Long id;
 
+	@NotBlank(message = "Nome é obrigatório")
+	@Size(max = 100)
 	private String nome;
 
 	private String descricao;
 
+	@Email
 	private String email;
 
+	@NotBlank
+	@Size(min = 7)
 	private String senha;
 
 	private String senhaRepetida;
 
+	@Min(value = 1)
+	@Max(value = 99)
 	private int numeroSorte;
 
 	private int sexo;
 
+	@Size(min = 1)
 	private String[] interesses;
 
+	@Digits(integer = 1, fraction = 2, message = "Valor da altura deve que ser no máximo 9,99")
 	private BigDecimal altura;
 
+	@Digits(integer = 3, fraction = 1, message = "Valor do peso deve ser no máximo 999,9")
 	private BigDecimal peso;
 
+	@Past
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dtNascimento;
 

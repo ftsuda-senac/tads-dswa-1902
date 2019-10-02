@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,11 +16,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.senac.tads.dsw.exemplosspring.sessao.item.Item;
 import br.senac.tads.dsw.exemplosspring.sessao.item.ItemService;
-import br.senac.tads.dsw.exemplosspring.sessao.item.ItemServiceMockImpl;
 
 @Controller
-@RequestMapping("/exemplo-sessao-errado")
-public class ExemploSessaoControllerErrado implements Serializable {
+@Scope("session")
+@RequestMapping("/exemplo-sessao2")
+public class ExemploSessaoController2 implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,7 +31,7 @@ public class ExemploSessaoControllerErrado implements Serializable {
 
 	@GetMapping
 	public ModelAndView mostrarTela() {
-		return new ModelAndView("exemplo-sessao-errado")
+		return new ModelAndView("exemplo-sessao2")
 				.addObject("itens", itemService.findAll());
 	}
 
@@ -40,17 +41,16 @@ public class ExemploSessaoControllerErrado implements Serializable {
 		Item item = itemService.findById(itemId);
 		itensSelecionados.add(new ItemSelecionado(item));
 		redirAttr.addFlashAttribute("msg", "Item ID " + item.getId() + " adicionado com sucesso");
-		return new ModelAndView("redirect:/exemplo-sessao-errado");
+		return new ModelAndView("redirect:/exemplo-sessao2");
 	}
 
 	@GetMapping("/limpar")
 	public ModelAndView limparSessao(RedirectAttributes redirAttr) {
 		itensSelecionados.clear();
 		redirAttr.addFlashAttribute("msg", "Itens removidos");
-		return new ModelAndView("redirect:/exemplo-sessao-errado");
+		return new ModelAndView("redirect:/exemplo-sessao2");
 	}
 
-	@ModelAttribute("itensSelecionados")
 	public List<ItemSelecionado> getItensSelecionados() {
 		return itensSelecionados;
 	}

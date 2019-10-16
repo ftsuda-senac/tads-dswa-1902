@@ -11,7 +11,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import javax.annotation.PostConstruct;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,8 +20,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProdutoRepositoryMockImpl implements ProdutoRepository {
 
-	@Autowired
-	private CategoriaRepository categoriaRepository;
+	private CategoriaRepository categoriaRepository = new CategoriaRepositoryMockImpl();
 
 	private Map<Long, Produto> mapItens;
 

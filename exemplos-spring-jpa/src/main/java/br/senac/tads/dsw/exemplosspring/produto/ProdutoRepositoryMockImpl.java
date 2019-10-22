@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  *
  * @author fernando.tsuda
  */
-@Service
+//@Service
 public class ProdutoRepositoryMockImpl implements ProdutoRepository {
 
 	private CategoriaRepository categoriaRepository = new CategoriaRepositoryMockImpl();

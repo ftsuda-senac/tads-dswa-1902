@@ -1,10 +1,12 @@
 package br.senac.tads.dsw.exemplospringsecurity.service;
 
+import org.springframework.security.core.GrantedAuthority;
+
 /**
  *
  * @author fernando.tsuda
  */
-public class Papel {
+public class Papel implements GrantedAuthority {
 
     private String nome;
 
@@ -22,5 +24,10 @@ public class Papel {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+	@Override
+	public String getAuthority() {
+		return nome;
+	}
 
 }

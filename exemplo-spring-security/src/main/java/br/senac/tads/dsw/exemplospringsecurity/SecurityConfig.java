@@ -7,6 +7,7 @@ package br.senac.tads.dsw.exemplospringsecurity;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -42,5 +43,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return plainPasswordEncoder();
     }
+    
+    
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+        .authorizeRequests()
+            .antMatchers("/css/**", "/img/**", "/js/**", "/font/**").permitAll()
+            .antMatchers("/protegido/peao/**").hasRole("PEAO")
+            .antMatchers("/protegido/fodon/**").hasRole("FODON")
+            .antMatchers("/protegido/god/**").hasRole("GOD")
+            .antMatchers("/**").authenticated()
+        .and()
+        	.formLogin()
+        		.loginPage("/login")
+        		.usernameParameter("username")
+        		.passwordParameter("senha")
+        		.defaultSuccessUrl("/home").permitAll()
+        .and()
+        	.logout()
+	            .logoutUrl("/logout")
+	            .logoutSuccessUrl("/login?logout")
+	            .invalidateHttpSession(true).deleteCookies("JSESSIONID")
+        .and()
+            .exceptionHandling()
+            	.accessDeniedPage("/erro/403");;
+    }
 
+    
+    
+    
+    
+    
+    
 }

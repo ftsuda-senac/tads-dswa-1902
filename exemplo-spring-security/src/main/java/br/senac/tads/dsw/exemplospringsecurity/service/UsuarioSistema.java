@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import br.senac.tads.dsw.exemplospringsecurity.SecurityConfig;
+
 
 /**
  *
@@ -33,7 +35,8 @@ public class UsuarioSistema implements UserDetails {
     }
 
     public final void setSenha(String senhaAberta) {
-        this.hashSenha = senhaAberta;
+        this.hashSenha = SecurityConfig.bcryptPasswordEncoder()
+        		.encode(senhaAberta);
     }
 
     @Override

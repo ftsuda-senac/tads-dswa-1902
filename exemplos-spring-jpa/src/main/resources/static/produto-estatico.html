@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exemplo Chamada AJAX</title>
+<script src="js/crud-ajax.js"></script>
+</head>
+<body>
+<h1>Exemplo Chamada AJAX</h1>
+<p>NOTAR QUE esta tela não usa nenhum recurso do Spring MVC ou Thymeleaf</p>
+<ul>
+<li>
+Ver a classe <code>ProdutoRestController</code> e comparar a lógica e anotações com <code>ProdutoController</code>
+<ul>
+<li>O <code>ProdutoRestController</code> foi configurado com <code>@RestController</code>; por isso, o retorno por padrão será um JSON dos objetos retornados por cada método.</li>
+<li>Abrir as URLs configuradas como <code>@GetMapping</code> em<code>ProdutoRestController</code> para ver o JSON retornado</li>
+<li>Alguns atributos das classes de Entidade foram anotadas com <code>@JsonIgnore</code> para evitar referência circular</li>
+</ul>
+</li>
+<li>Ver o conteúdo do arquivo <code>ajax.js</code> que contém uma chamada AJAX para o <code>ProdutoRestController</code> para obter a lista dos produtos e mostrar dinamicamente as informações na tela.</li>
+</ul>
+<ul id="listaResultado"></ul>
+<button id="btnLista">Carregar itens</button>
+</body>
+</html>

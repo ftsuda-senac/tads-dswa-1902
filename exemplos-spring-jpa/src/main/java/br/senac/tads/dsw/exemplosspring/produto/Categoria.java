@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author fernando.tsuda
@@ -32,6 +34,7 @@ public class Categoria implements Serializable {
     private String nome;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "categorias")
+    @JsonIgnore
     private Set<Produto> produtos;
 
     public Categoria() {

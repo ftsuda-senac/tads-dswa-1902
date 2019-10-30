@@ -28,6 +28,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @NamedQueries({
@@ -98,10 +101,12 @@ public class Produto implements Serializable {
 			orphanRemoval = true)
 	private Set<ImagemProduto> imagens;
 
+	@JsonIgnore
 	private transient Set<Integer> idsCategorias;
 	
 	// Usando lista como apoio para receber dados do form (Set gera erro)
 	// https://stackoverflow.com/a/28505620
+	@JsonIgnore
 	private transient List<ImagemProduto> imagensList;
 
 	@Transient

@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  *
  * @author fernando.tsuda
@@ -37,6 +39,7 @@ public class ImagemProduto implements Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_produto")
+	@JsonIgnore
 	private Produto produto;
 
 	public ImagemProduto() {

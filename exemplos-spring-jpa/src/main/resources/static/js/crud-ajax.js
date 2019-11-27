@@ -30,7 +30,7 @@ function obterItem(item) {
 
 function listarProdutos(ev) {
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'api/produto', true);
+    xhr.open('GET', 'rest/produto', true);
     xhr.onload = function () {
         if (xhr.status >= 200 && xhr.status < 400) {
             let data = JSON.parse(xhr.responseText);
